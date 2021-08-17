@@ -1,5 +1,5 @@
 // region 2. Project Libraries
 import Navbar from './Navbar';
-// endregion
+// end-region
 
 export { Navbar as default };
