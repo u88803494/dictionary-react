@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 // end-region
 
 const App = () => (
-  <div className="App text-white">
+  <div className="App text-white bg-indigo-800">
     <Navbar />
     <Dictionary />
   </div>
