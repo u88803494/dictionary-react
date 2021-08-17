@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 // end-region
 
 const App = () => (
-  <div className="App bg-red-700 bg-opacity-80 h-20">
+  <div className="App">
     <Navbar />
   </div>
 );
