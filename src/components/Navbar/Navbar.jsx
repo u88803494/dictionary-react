@@ -8,7 +8,7 @@ import images from '../../assets/images';
 // end-region
 
 const Navbar = ({ setWord }) => {
-  const ChangeWord = (e) => {
+  const handleChangeWord = (e) => {
     setWord(e.target.value);
   };
 
@@ -20,7 +20,7 @@ const Navbar = ({ setWord }) => {
           <input
             className="h-10 w-36 px-4 rounded-3xl focus-visible: outline-none text-black"
             name="word"
-            onChange={ChangeWord}
+            onChange={handleChangeWord}
             placeholder="查詢字義"
             type=""
           />

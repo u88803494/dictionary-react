@@ -11,7 +11,7 @@ const App = () => {
   const [word, setWord] = useState('');
 
   return (
-    <div className="App text-white bg-indigo-800">
+    <div className="App min-h-screen text-white bg-indigo-900 opacity-90">
       <Navbar setWord={setWord} />
       <Dictionary word={word} />
     </div>
