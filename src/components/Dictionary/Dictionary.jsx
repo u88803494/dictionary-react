@@ -4,41 +4,39 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 // end-region
 
+// region 2. Project Libraries
+import DictionaryRender from './DictionaryRender';
+// end-region
+
 const Dictionary = ({ word }) => {
   const [heteronyms, setHeteronyms] = useState([]);
-  useEffect(() => {
-    if (word) {
-      axios.get(` https://www.moedict.tw/raw/${word}`)
-        .then((res) => setHeteronyms(res.data.heteronyms))
-        .catch((err) => console.log(err));
-    }
-    if (!word) {
-      setHeteronyms([]);
+  useEffect(async () => {
+    try {
+      if (word) {
+        const { data } = await axios.get(` https://www.moedict.tw/raw/${word}`);
+        // setHeteronyms(data.heteronyms);
+        const definitions = data.heteronyms.map((definition) => {
+          const pronunciations2 = definition.bopomofo2.split(' ');
+          return (definition.bopomofo.split(' ').map((pronunciation, i) => ({
+            pronunciation1: pronunciation,
+            pronunciation2: pronunciations2[i],
+            word: word[i],
+          })));
+        });
+        setHeteronyms(definitions);
+      }
+      if (!word) {
+        setHeteronyms([]);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, [word]);
   return (
-    <div className="flex justify-center">
-      <div className="h-96 w-2/3 mt-8 flex flex-col">
-        <div className="heteronyms">
-          {heteronyms.map((heteronym) => (
-            <div className="flex">
-              <div className="word bg-white text-black text-7xl">
-                {word}
-              </div>
-              <div className="pronunciation-container">
-                <div className="bopomofo text-4xl">
-                  {`注：${heteronym.bopomofo}`}
-                </div>
-                <div className="romanization text-4xl">
-                  {`拼：${heteronym.bopomofo2}`}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div>解釋</div>
-      </div>
-    </div>
+    <DictionaryRender
+      word={word}
+      heteronyms={heteronyms}
+    />
   );
 };
 
