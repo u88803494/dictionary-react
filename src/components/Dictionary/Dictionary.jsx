@@ -13,17 +13,19 @@ const Dictionary = ({ word }) => {
   useEffect(async () => {
     try {
       if (word) {
-        const { data } = await axios.get(` https://www.moedict.tw/raw/${word}`);
-        // setHeteronyms(data.heteronyms);
-        const definitions = data.heteronyms.map((definition) => {
-          const pronunciations2 = definition.bopomofo2.split(' ');
-          return (definition.bopomofo.split(' ').map((pronunciation, i) => ({
-            pronunciation1: pronunciation,
-            pronunciation2: pronunciations2[i],
-            word: word[i],
-          })));
+        const { data } = await axios.get(`https://www.moedict.tw/raw/${word}`);
+        const wordDetails = data.heteronyms.map((wordDetail) => {
+          const pinyin = wordDetail.pinyin.split(' ');
+          return ({
+            pronunciations: wordDetail.bopomofo.split(' ').map((pronunciation, i) => ({
+              pronunciation1: pronunciation,
+              pronunciation2: pinyin[i],
+              word: word[i],
+            })),
+            definitions: wordDetail.definitions,
+          });
         });
-        setHeteronyms(definitions);
+        setHeteronyms(wordDetails);
       }
       if (!word) {
         setHeteronyms([]);
