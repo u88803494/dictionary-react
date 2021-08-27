@@ -9,7 +9,7 @@ import DictionaryRender from './DictionaryRender';
 // end-region
 
 const Dictionary = ({ word }) => {
-  const [heteronyms, setHeteronyms] = useState([]);
+  const [details, setDetails] = useState([]);
   useEffect(async () => {
     try {
       if (word) {
@@ -25,10 +25,10 @@ const Dictionary = ({ word }) => {
             definitions: wordDetail.definitions,
           });
         });
-        setHeteronyms(wordDetails);
+        setDetails(wordDetails);
       }
       if (!word) {
-        setHeteronyms([]);
+        setDetails([]);
       }
     } catch (error) {
       console.log(error);
@@ -36,8 +36,7 @@ const Dictionary = ({ word }) => {
   }, [word]);
   return (
     <DictionaryRender
-      word={word}
-      heteronyms={heteronyms}
+      details={details}
     />
   );
 };

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // end-region
 
-const DictionaryRender = ({ heteronyms }) => (
+const DictionaryRender = ({ details }) => (
   <div className="flex justify-center">
-    <div className="h-96 w-2/3 mt-8 flex flex-col">
-      <div className="heteronyms flex">
-        {heteronyms.map((heteronym) => (
-          <>
+    <div className="words h-96 w-2/3 mt-8 flex flex-col">
+      {details.map((heteronym) => (
+        <div className="word">
+          <div className="heteronyms flex">
             {heteronym.pronunciations.map(({ pronunciation1, pronunciation2, word }) => (
               <div className="heteronym flex mr-8">
-                <div className="word mr-2 bg-white text-black text-7xl">
+                <div className="mr-2 bg-white text-black text-7xl">
                   {word}
                 </div>
                 <div className="pronunciations-container">
@@ -24,16 +24,18 @@ const DictionaryRender = ({ heteronyms }) => (
                 </div>
               </div>
             ))}
-          </>
-        ))}
-      </div>
-      <div>解釋</div>
+          </div>
+          <div className="definition">
+            解釋
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 );
 
 DictionaryRender.propTypes = {
-  heteronyms: PropTypes.arrayOf(PropTypes.shape({
+  details: PropTypes.arrayOf(PropTypes.shape({
     definitions: PropTypes.arrayOf(PropTypes.shape({
       def: PropTypes.string.isRequired,
       example: PropTypes.arrayOf(PropTypes.string),
