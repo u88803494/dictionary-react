@@ -4,10 +4,10 @@ import React from 'react';
 // end-region
 
 const DictionaryRender = ({ details }) => (
-  <div className="flex justify-center">
-    <div className="h-96 w-2/3 mt-8 flex flex-col">
+  <div className="flex justify-center items-center flex-col">
+    <div className="w-2/3 mt-8 flex flex-col">
       {details.map((heteronym) => (
-        <>
+        <div className="mb-4">
           <div className="flex">
             {heteronym.pronunciations.map(({ pronunciation1, pronunciation2, word }) => (
               <div className="flex mr-8">
@@ -25,12 +25,29 @@ const DictionaryRender = ({ details }) => (
               </div>
             ))}
           </div>
-          <div className="definitions">
-            解釋
+          <div className="definitions w-full mt-4">
+            <header className="h-12 pl-16 pr-8 flex justify-between items-center bg-gray-600">
+              <div className="flex">
+                釋義
+              </div>
+              <div className="toggle">
+                圖
+              </div>
+            </header>
+            <div className="definitions-content pt-4 px-16 pb-24 bg-gray-800">
+              {console.log(heteronym.definitions)}
+              <div className="border-solid border-t-2 border-gray-600">
+                [副]
+              </div>
+              <div className="border-solid border-t-2 border-gray-600">
+                解釋內容
+              </div>
+            </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
+    <footer className="h-14 w-full bg-black" />
   </div>
 );
 
