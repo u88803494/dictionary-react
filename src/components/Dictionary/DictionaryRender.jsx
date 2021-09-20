@@ -4,8 +4,8 @@ import React from 'react';
 // end-region
 
 const DictionaryRender = ({ details }) => (
-  <div className="flex justify-center items-center flex-col">
-    <div className="w-2/3 mt-8 flex flex-col">
+  <div className="flex min-h-screen items-center flex-col justify-between">
+    <div className="w-2/3 min-h-full mt-8 flex flex-col">
       {details.map((heteronym) => (
         <div className="mb-4">
           <div className="flex">
