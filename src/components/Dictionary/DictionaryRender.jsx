@@ -34,14 +34,37 @@ const DictionaryRender = ({ details }) => (
                 圖
               </div>
             </header>
-            <div className="definitions-content pt-4 px-16 pb-24 bg-gray-800">
-              {console.log(heteronym.definitions)}
-              <div className="border-solid border-t-2 border-gray-600">
-                [副]
-              </div>
-              <div className="border-solid border-t-2 border-gray-600">
-                解釋內容
-              </div>
+            <div className="definitions-content pt-6 px-16 pb-24 bg-gray-800">
+              {heteronym.typeDefinitions.map((definitions) => (
+                <>
+                  <div className="py-1 border-solid border-t-2 border-gray-600">
+                    {definitions[0].type ? `[${definitions[0].type}]` : ''}
+                  </div>
+                  <div className="mb-6 border-solid border-t-2 border-gray-600">
+                    {definitions.map(({ def, example, quote }, index) => (
+                      <div className="">
+                        <div className="mt-2 mb-1 text-xl font-black">
+                          {`${index + 1}. ${def}`}
+                        </div>
+                        <div>
+                          {example && (example.map((ex) => (
+                            <div>
+                              {ex}
+                            </div>
+                          )))}
+                        </div>
+                        <div>
+                          {quote && (quote.map((q) => (
+                            <div>
+                              {q}
+                            </div>
+                          )))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ))}
             </div>
           </div>
         </div>
@@ -53,6 +76,7 @@ const DictionaryRender = ({ details }) => (
 
 DictionaryRender.propTypes = {
   details: PropTypes.arrayOf(PropTypes.shape({
+    // TODO: Adjust the format
     definitions: PropTypes.arrayOf(PropTypes.shape({
       def: PropTypes.string.isRequired,
       example: PropTypes.arrayOf(PropTypes.string),
