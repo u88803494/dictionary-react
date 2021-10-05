@@ -10,8 +10,10 @@ import DictionaryRender from './DictionaryRender';
 
 const Dictionary = ({ word }) => {
   const [details, setDetails] = useState([]);
+
   useEffect(async () => {
     try {
+      // TODO: 可以抽到 component 外
       if (word) {
         const { data } = await axios.get(`https://www.moedict.tw/raw/${word}`);
         const wordDetails = data.heteronyms.map((wordDetail) => {
@@ -38,6 +40,7 @@ const Dictionary = ({ word }) => {
       console.log(error);
     }
   }, [word]);
+
   return (
     <DictionaryRender
       details={details}

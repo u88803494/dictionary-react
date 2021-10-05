@@ -31,13 +31,14 @@ const DictionaryRender = ({ details }) => (
                 釋義
               </div>
               <div className="toggle">
+                {/* TODO: Change to use icon */}
                 圖
               </div>
             </header>
             <div className="definitions-content pt-6 px-16 pb-24 bg-gray-800">
               {heteronym.typeDefinitions.map((definitions) => (
                 <>
-                  <div className="py-1 border-solid border-t-2 border-gray-600">
+                  <div className="py-1 font-black text-xl border-solid border-t-2 border-gray-600">
                     {definitions[0].type ? `[${definitions[0].type}]` : ''}
                   </div>
                   <div className="mb-6 border-solid border-t-2 border-gray-600">
