@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // end-region
 
 // region 2. Project Libraries
-import Dictionary from './components/Dictionary';
+import DictionaryPage from './pages/Dictionary';
 import Navbar from './components/Navbar';
 // end-region
 
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="App min-h-screen text-white bg-indigo-900 opacity-90">
       <Navbar setWord={setWord} />
-      <Dictionary word={word} />
+      <DictionaryPage word={word} />
     </div>
   );
 };
